@@ -974,4 +974,4 @@ const GLOBAL_CSS = `
   @media (min-width: 1024px) {
     .section { display: block !important; }
   }
-`;
+`; 
