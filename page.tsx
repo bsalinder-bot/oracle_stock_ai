@@ -1,19 +1,22 @@
-// app/page.tsx — OracleStock AI Dashboard
-// Full production build: live DB, Oracle streaming, CRT aesthetics
-'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { supabase }         from '@/lib/supabase/client';
+  po'use client';
+
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '@supabase/supabase-js';
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+
+// Initialize Supabase directly for now to fix the error
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+// Define local status colors
 const STATUS_COLOR = {
-  healthy:  '#20dca0',
-  warning:  '#f5a623',
+  healthy: '#20dca0',
+  warning: '#f5a623',
   critical: '#ff3c5a',
   stockout: '#cc0033',
-};
-const RISK_TYPE_LABEL: Record<string, string> = {
-  port_congestion:    '⚓ PORT',
+};rt_congestion:    '⚓ PORT',
   weather_disruption: '🌀 WEATHER',
   supplier_failure:   '⛔ SUPPLIER',
   demand_spike:       '📈 DEMAND',
