@@ -4,26 +4,14 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { supabase }         from '@/lib/supabase/client';
-import {
-  fetchDashboardMetrics, fetchSKUCards,
-  fetchRiskCards, fetchSupplierScoreCards,
-  SyncEngine, updateRiskStatus,
-} from '@/lib/sync-engine';
-import { ActionSheet }      from '@/components/ActionSheet';
-import type {
-  DashboardMetrics, SKUCard,
-  RiskCard, SupplierScoreCard,
-} from '@/types/database';
-import type { User }        from '@supabase/supabase-js';
-
-// ─── Status helpers ───────────────────────────────────────────────────
+import { createClient } from '@supabase/supabase-js';
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 const STATUS_COLOR = {
   healthy:  '#20dca0',
   warning:  '#f5a623',
   critical: '#ff3c5a',
   stockout: '#cc0033',
 };
-
 const RISK_TYPE_LABEL: Record<string, string> = {
   port_congestion:    '⚓ PORT',
   weather_disruption: '🌀 WEATHER',
