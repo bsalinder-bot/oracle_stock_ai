@@ -1,5 +1,4 @@
-
-  po'use client';
+'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '@supabase/supabase-js';
@@ -16,7 +15,10 @@ const STATUS_COLOR = {
   warning: '#f5a623',
   critical: '#ff3c5a',
   stockout: '#cc0033',
-};rt_congestion:    '⚓ PORT',
+};
+
+const RISK_TYPE_LABEL = {
+  port_congestion:    '⚓ PORT',
   weather_disruption: '🌀 WEATHER',
   supplier_failure:   '⛔ SUPPLIER',
   demand_spike:       '📈 DEMAND',
@@ -573,7 +575,7 @@ function EmptyState({ label }: { label: string }) {
   return <div className="empty-state">― {label} ―</div>;
 }
 
-// ─── CSS ──────────────────────────────────────────────────────────────
+// ─── CSS ─────────────────────────────────────────────────────────────[...]
 const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
 
@@ -965,4 +967,4 @@ const GLOBAL_CSS = `
   @media (min-width: 1024px) {
     .section { display: block !important; }
   }
-`; 
+`;
