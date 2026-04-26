@@ -1,23 +1,24 @@
 export default function Dashboard() {
-  const stats = [
-    { title: "Revenue Protected", value: "$12.8M", change: "+24%" },
-    { title: "Stockout Risk", value: "8%", change: "-12%" },
-    { title: "Inventory Accuracy", value: "98.2%", change: "+5%" },
-    { title: "Supplier Health", value: "94/100", change: "+11%" },
+  const metrics = [
+    { title: "Revenue Saved", value: "$28.4M", change: "+31%" },
+    { title: "Demand Accuracy", value: "99.1%", change: "+7%" },
+    { title: "Stockout Risk", value: "5%", change: "-18%" },
+    { title: "Supplier Score", value: "96/100", change: "+9%" },
   ];
 
   const alerts = [
-    "⚠ Taiwan supplier delay detected",
-    "📈 Demand surge predicted for AI Chips",
-    "📦 Warehouse London nearing capacity",
-    "🤖 AI recommends reorder of 4,200 units",
+    "⚠ Supplier delay risk in China",
+    "📈 GPU demand spike forecasted +42%",
+    "📦 London warehouse at 92% capacity",
+    "🤖 AI suggests reorder 8,500 units",
+    "🚢 Shipping lane disruption detected",
   ];
 
   const products = [
-    { name: "Oracle CPU Chips", demand: "+34%", stock: "Healthy" },
-    { name: "Cloud Servers", demand: "+21%", stock: "Low" },
-    { name: "AI Sensors", demand: "+54%", stock: "Critical" },
-    { name: "Storage Units", demand: "+12%", stock: "Healthy" },
+    { name: "AI Chips", demand: "+42%", stock: "Low", score: "High Profit" },
+    { name: "Cloud Servers", demand: "+18%", stock: "Healthy", score: "Stable" },
+    { name: "Sensors", demand: "+57%", stock: "Critical", score: "Urgent" },
+    { name: "Storage Units", demand: "+11%", stock: "Healthy", score: "Stable" },
   ];
 
   return (
@@ -25,18 +26,19 @@ export default function Dashboard() {
       style={{
         minHeight: "100vh",
         background:
-          "linear-gradient(135deg,#050816,#0f172a,#111827,#020617)",
+          "radial-gradient(circle at top right,#1e3a8a,#020617,#000)",
         color: "white",
         fontFamily: "Arial, sans-serif",
         display: "grid",
-        gridTemplateColumns: "260px 1fr 340px",
+        gridTemplateColumns: "250px 1fr 340px",
       }}
     >
       {/* Sidebar */}
       <aside
         style={{
-          padding: "30px 22px",
+          padding: "28px 20px",
           borderRight: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.02)",
         }}
       >
         <h1 style={{ fontSize: "34px", marginBottom: "40px" }}>
@@ -49,7 +51,8 @@ export default function Dashboard() {
           "Inventory",
           "Suppliers",
           "Analytics",
-          "Reports",
+          "AI Reports",
+          "Billing",
           "Settings",
         ].map((item, i) => (
           <div
@@ -58,12 +61,12 @@ export default function Dashboard() {
               padding: "14px 18px",
               marginBottom: "12px",
               borderRadius: "14px",
+              fontWeight: 600,
+              cursor: "pointer",
               background:
                 i === 0
                   ? "linear-gradient(90deg,#2563eb,#06b6d4)"
                   : "rgba(255,255,255,0.03)",
-              fontWeight: 600,
-              cursor: "pointer",
             }}
           >
             {item}
@@ -71,121 +74,159 @@ export default function Dashboard() {
         ))}
       </aside>
 
-      {/* Center */}
-      <section style={{ padding: "30px" }}>
+      {/* Main */}
+      <section style={{ padding: "28px" }}>
+        {/* Header */}
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "30px",
+            marginBottom: "24px",
           }}
         >
           <div>
-            <h2 style={{ fontSize: "42px", margin: 0 }}>
-              Global Supply Dashboard
+            <h2 style={{ fontSize: "44px", margin: 0 }}>
+              Billion Dollar Command Center
             </h2>
             <p style={{ color: "#94a3b8" }}>
-              AI-powered forecasting & inventory intelligence
+              Real-time AI forecasting, logistics & revenue optimization
             </p>
           </div>
 
           <button
             style={{
-              padding: "14px 22px",
-              borderRadius: "14px",
+              padding: "14px 24px",
               border: "none",
-              color: "white",
+              borderRadius: "14px",
               fontWeight: 700,
+              color: "white",
+              cursor: "pointer",
               background:
                 "linear-gradient(90deg,#8b5cf6,#06b6d4)",
-              cursor: "pointer",
             }}
           >
-            + Generate AI Report
+            + Generate Investor Report
           </button>
         </div>
 
-        {/* Stats */}
+        {/* Metric Cards */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4,1fr)",
-            gap: "18px",
-            marginBottom: "25px",
+            gap: "16px",
+            marginBottom: "22px",
           }}
         >
-          {stats.map((card, i) => (
+          {metrics.map((m, i) => (
             <div
               key={i}
               style={{
                 padding: "22px",
                 borderRadius: "18px",
-                background: "rgba(255,255,255,0.05)",
+                background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.08)",
               }}
             >
-              <p style={{ color: "#94a3b8", marginBottom: "8px" }}>
-                {card.title}
-              </p>
-              <h3 style={{ fontSize: "36px", margin: "0 0 8px 0" }}>
-                {card.value}
+              <p style={{ color: "#94a3b8" }}>{m.title}</p>
+              <h3 style={{ fontSize: "36px", margin: "10px 0" }}>
+                {m.value}
               </h3>
-              <span style={{ color: "#22c55e" }}>{card.change}</span>
+              <span style={{ color: "#22c55e" }}>{m.change}</span>
             </div>
           ))}
         </div>
 
-        {/* Forecast Chart */}
+        {/* Chart + Map */}
         <div
           style={{
-            padding: "24px",
-            borderRadius: "20px",
-            background: "rgba(255,255,255,0.04)",
-            marginBottom: "25px",
+            display: "grid",
+            gridTemplateColumns: "2fr 1fr",
+            gap: "18px",
+            marginBottom: "22px",
           }}
         >
-          <h3 style={{ marginBottom: "20px" }}>Demand Forecast</h3>
-
+          {/* Chart */}
           <div
             style={{
-              height: "260px",
-              display: "flex",
-              alignItems: "flex-end",
-              gap: "14px",
+              padding: "22px",
+              borderRadius: "18px",
+              background: "rgba(255,255,255,0.04)",
             }}
           >
-            {[70, 90, 80, 130, 160, 120, 210, 240].map((h, i) => (
-              <div
-                key={i}
-                style={{
-                  flex: 1,
-                  height: `${h}px`,
-                  borderRadius: "12px 12px 0 0",
-                  background:
-                    "linear-gradient(180deg,#22d3ee,#2563eb)",
-                }}
-              />
-            ))}
+            <h3>Demand Prediction Engine</h3>
+
+            <div
+              style={{
+                height: "260px",
+                display: "flex",
+                alignItems: "flex-end",
+                gap: "12px",
+                marginTop: "18px",
+              }}
+            >
+              {[90, 120, 110, 180, 210, 170, 260, 300].map((h, i) => (
+                <div
+                  key={i}
+                  style={{
+                    flex: 1,
+                    height: `${h}px`,
+                    borderRadius: "14px 14px 0 0",
+                    background:
+                      "linear-gradient(180deg,#22d3ee,#2563eb)",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Global Risk */}
+          <div
+            style={{
+              padding: "22px",
+              borderRadius: "18px",
+              background: "rgba(255,255,255,0.04)",
+            }}
+          >
+            <h3>Global Risk Map</h3>
+
+            <div
+              style={{
+                marginTop: "20px",
+                height: "260px",
+                borderRadius: "16px",
+                background:
+                  "linear-gradient(135deg,#0f172a,#1e293b)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#38bdf8",
+                fontSize: "22px",
+                fontWeight: 700,
+              }}
+            >
+              🌍 LIVE SUPPLY NETWORK
+            </div>
           </div>
         </div>
 
-        {/* Products Table */}
+        {/* Table */}
         <div
           style={{
-            padding: "24px",
-            borderRadius: "20px",
+            padding: "22px",
+            borderRadius: "18px",
             background: "rgba(255,255,255,0.04)",
           }}
         >
-          <h3 style={{ marginBottom: "18px" }}>Inventory Intelligence</h3>
+          <h3>AI Inventory Decisions</h3>
 
           {products.map((p, i) => (
             <div
               key={i}
               style={{
                 display: "grid",
-                gridTemplateColumns: "2fr 1fr 1fr",
+                gridTemplateColumns: "2fr 1fr 1fr 1fr",
                 padding: "14px 0",
                 borderBottom:
                   "1px solid rgba(255,255,255,0.06)",
@@ -193,18 +234,8 @@ export default function Dashboard() {
             >
               <div>{p.name}</div>
               <div>{p.demand}</div>
-              <div
-                style={{
-                  color:
-                    p.stock === "Critical"
-                      ? "#ef4444"
-                      : p.stock === "Low"
-                      ? "#f59e0b"
-                      : "#22c55e",
-                }}
-              >
-                {p.stock}
-              </div>
+              <div>{p.stock}</div>
+              <div style={{ color: "#22c55e" }}>{p.score}</div>
             </div>
           ))}
         </div>
@@ -213,16 +244,18 @@ export default function Dashboard() {
       {/* Right Panel */}
       <aside
         style={{
-          padding: "30px 22px",
+          padding: "28px 20px",
           borderLeft: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(255,255,255,0.02)",
         }}
       >
+        {/* Alerts */}
         <div
           style={{
-            padding: "22px",
+            padding: "20px",
             borderRadius: "18px",
-            background: "rgba(255,255,255,0.05)",
-            marginBottom: "20px",
+            background: "rgba(255,255,255,0.04)",
+            marginBottom: "18px",
           }}
         >
           <h3>AI Alerts</h3>
@@ -231,10 +264,10 @@ export default function Dashboard() {
             <div
               key={i}
               style={{
-                marginTop: "14px",
+                marginTop: "12px",
                 padding: "12px",
                 borderRadius: "12px",
-                background: "rgba(255,255,255,0.04)",
+                background: "rgba(255,255,255,0.03)",
               }}
             >
               {a}
@@ -242,26 +275,27 @@ export default function Dashboard() {
           ))}
         </div>
 
+        {/* AI Assistant */}
         <div
           style={{
-            padding: "22px",
+            padding: "20px",
             borderRadius: "18px",
             background:
               "linear-gradient(135deg,#1e293b,#0f172a)",
           }}
         >
           <h3>Oracle AI Assistant</h3>
+
           <p style={{ color: "#94a3b8" }}>
-            Ask anything about supply chain, stock risk,
-            forecasting or revenue.
+            Ask for stock risks, demand forecasts, suppliers or profits.
           </p>
 
           <input
             placeholder="Ask Oracle AI..."
             style={{
               width: "100%",
+              marginTop: "12px",
               padding: "14px",
-              marginTop: "14px",
               borderRadius: "12px",
               border: "none",
               outline: "none",
@@ -273,13 +307,13 @@ export default function Dashboard() {
               width: "100%",
               marginTop: "12px",
               padding: "14px",
-              borderRadius: "12px",
               border: "none",
-              background:
-                "linear-gradient(90deg,#2563eb,#06b6d4)",
+              borderRadius: "12px",
               color: "white",
               fontWeight: 700,
               cursor: "pointer",
+              background:
+                "linear-gradient(90deg,#2563eb,#06b6d4)",
             }}
           >
             Run AI Analysis
